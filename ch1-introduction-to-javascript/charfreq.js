@@ -4,7 +4,7 @@ of each letter in that text, and displays a histogram of the most
 frequently used characters. It require Node 12 or higher to run.
 
 In a Unix-type environment, you can invoke the program like this:
-  node charfreq.js < corpus.txt
+  node ch1-introduction-to-javascript/charfreq.js < ch1-introduction-to-javascript/hello-world.txt
 */
 
 // This class extends Map, so that the get() method returns the specified value, instead of null, when the key is not in the map
