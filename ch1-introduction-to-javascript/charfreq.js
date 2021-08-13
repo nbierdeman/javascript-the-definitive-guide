@@ -27,7 +27,7 @@ class DefaultMap extends Map {
 class Histogram {
   constructor() {
     this.letterCounts = new DefaultMap(0);  // Map from letters to counts
-    this.totalLetters = 0;  // How many letters in all
+    this.totalLetters = 0;  // How many letters in total
   }
 
   // This function updates the histogram with the letters of text
@@ -35,10 +35,41 @@ class Histogram {
     // Remove whitespace from the text, and convert to upper case
     text = text.replace(/\s/g, "").toUpperCase();
     // Now loop through the characters of the text
-    for(let character of text) {
+    for (let character of text) {
       let count = this.letterCounts.get(character); // Get old count
-      this.letterCounts.set(character, count+1);  // Increment it
+      this.letterCounts.set(character, count + 1);  // Increment it
       this.totalLetters++;
     }
+  }
+
+  // Convert the histogram to a string that displays an ASCII graphic
+  toString() {
+    // Convert the Map to an array of [key, value] arrays
+    let entries = [...this.letterCounts];
+
+    // Sort the array by count, then alphabetically
+    entries.sort((a, b) => {
+      if (a[1] === b[1]) {
+        return a[0] < b[0] ? -1 : 1;
+      } else {
+        return b[1] - a[1];
+      }
+    });
+
+    // Convert the counts to percentages
+    for (let entry of entries) {
+      entry[1] = entry[1] / this.totalLetters * 100;
+    }
+
+    // Drop any entries less than 1%
+    entries = entries.filter(entry => entry[1] >= 1);
+
+    // Now convert each entry to a line of text
+    let lines = entries.map(
+      ([l, n]) => `${l}: ${"#".repeat(Math.round(n))} ${n.toFixed(2)}%`
+    );
+
+    // And return the concatenated lines, separated by newline characters
+    return lines.join("\n");
   }
 }
