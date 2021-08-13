@@ -1,0 +1,50 @@
+- JavaScript derives its first-class functions from Scheme and its prototype-based inheritance from the little-known language Self
+
+- technically, “JavaScript” is a trademark licensed from Sun Microsystems (now Oracle) used to describe Netscape’s (now Mozilla’s) implementation of the language
+  - because of trademark issues, the standardized version of the language was stuck with the awkward name “ECMAScript”
+
+- in ES5 and later, programs can opt in to JavaScript’s strict mode in which a number of early language mistakes have been corrected
+
+- in ES6 and later, the use of new language features often implicitly invokes strict mode
+  - for example, if you use the ES6 class keyword or create an ES6 module, then all the code within the class or module is automatically strict, and the old, flawed features are not available in those contexts
+
+- every language must have a platform, or standard library, for performing things like basic input and output
+  - the core JavaScript language defines a minimal API for working with numbers, text, arrays, sets, maps, and so on, but does not include any input or output functionality
+  - input and output (as well as more sophisticated features, such as networking, storage, and graphics) are the responsibility of the “host environment” within which JavaScript is embedded
+  - the original host environment for JavaScript was a web browser
+  - since 2010, another host environment has been available for JavaScript code
+    - instead of constraining JavaScript to work with the APIs provided by a web browser, Node gives JavaScript access to the entire operating system, allowing JavaScript programs to read and write files, send and receive data over the network, and make and serve HTTP requests
+
+- a variable is a symbolic name for a value
+
+let book = {
+    topic: "JavaScript",
+    edition: 7
+};
+
+- an object is a collection of name/value pairs, or a string to value map
+  - access the properties of an object with . or []
+  - conditionally access properties with ?. (ES2020)
+    - book.contents?.ch01?.sect1 // => undefined: book.contents has no ch01 property
+
+- an expression is a phrase of JavaScript that can be evaluated to produce a value
+  - for example, the use of . and [] to refer to the value of an object property or array element is an expression
+  - one of the most common ways to form expressions in JavaScript is to use operators
+    - operators act on values (the operands) to produce a new value
+    - equality and relational operators test whether two values are equal, unequal, less than, greater than, and so on
+      - they evaluate to true or false
+
+- if JavaScript expressions are like phrases, then JavaScript statements are like full sentences
+  - roughly, an expression is something that computes a value but doesn’t do anything: it doesn’t alter the program state in any way
+  - statements, on the other hand, don’t have a value, but they do alter the state
+    - variable declarations and assignment are statements
+    - the other broad category of statements is control structures, such as conditionals and loops
+    - JavaScript statements include conditionals and loops using the syntax of C, C++, Java, and other languages
+
+- a function is a named and parameterized block of JavaScript code that you define once, and can then invoke over and over again
+  - a concise syntax uses => to separate the argument list from the function body, so functions defined this way are known as arrow functions
+    - arrow functions are most commonly used when you want to pass an unnamed function as an argument to another function
+
+- when functions are assigned to the properties of an object, we call them "methods"
+  - all JavaScript objects (including arrays) have methods
+  - the "this" keyword refers to the object on which the method is defined
