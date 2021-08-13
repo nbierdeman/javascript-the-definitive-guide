@@ -8,7 +8,6 @@ In a Unix-type environment, you can invoke the program like this:
 */
 
 // This class extends Map, so that the get() method returns the specified value, instead of null, when the key is not in the map
-
 class DefaultMap extends Map {
   constructor(defaultValue) {
     super();  // Invoke superclass constructor
@@ -20,6 +19,26 @@ class DefaultMap extends Map {
       return super.get(key);  // return its value from superclass
     } else {
       return this.defaultValue;
+    }
+  }
+}
+
+// This class computes and displays letter frequency histograms
+class Histogram {
+  constructor() {
+    this.letterCounts = new DefaultMap(0);  // Map from letters to counts
+    this.totalLetters = 0;  // How many letters in all
+  }
+
+  // This function updates the histogram with the letters of text
+  add(text) {
+    // Remove whitespace from the text, and convert to upper case
+    text = text.replace(/\s/g, "").toUpperCase();
+    // Now loop through the characters of the text
+    for(let character of text) {
+      let count = this.letterCounts.get(character); // Get old count
+      this.letterCounts.set(character, count+1);  // Increment it
+      this.totalLetters++;
     }
   }
 }
