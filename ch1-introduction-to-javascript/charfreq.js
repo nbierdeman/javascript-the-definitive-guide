@@ -73,3 +73,23 @@ class Histogram {
     return lines.join("\n");
   }
 }
+
+/*
+This async (Promise-returning) function creates a Histogram object,
+asynchronously reads chunks of text from standard input, and adds those chunks to
+the histogram. When it reaches the end of the stream, it returns the histogram.
+*/
+
+async function histogramFromStdin() {
+  process.stdin.setEncoding("utf-8"); // Read Unicode strings, not bytes
+  let histogram = new Histogram();
+  
+  for await (let chunk of process.stdin) {
+    histogram.add(chunk);
+  }
+  
+  return histogram;
+}
+
+// This final line of code is the main body of the program. It makes a Histogram object from standard input, then prints the histogram.
+histogramFromStdin().then(histogram => { console.log(histogram.toString()); });
